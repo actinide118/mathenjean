@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portage mobile</title>
+</head>
+<body>
+    <header><input type="text" id="numinput"><button id="trigger">go</button></header>
+    <div id="result"></div>
+    <script src="portage1.js"></script>
+    <script>
+        let len = 10
+        let doc = document.getElementById("result");
+        let refarr = []
+        let trigger = document.getElementById("trigger");
+        let numinput = document.getElementById("numinput");
+        trigger.addEventListener("click",() => {
+            let len = parseInt(numinput.value);
+            doc.innerHTML = "";
+            refarr = [];
+        for (let i = 1; i < len+1; i++){
+            refarr.push(i);
+        }
+        for (let i = 2;i <=10; i+=2){
+            let line = refarr.filter((e) => e !== i);
+
+            let s = new Suite(line,true,i);
+            doc.innerHTML += s.toString().replaceAll("\n","<br>").replaceAll("\t","&emsp;&emsp;");
+}
+})
+    </script>
+</body>
+</html>
