@@ -1,0 +1,13 @@
+{
+  "name": "math_enjeans",
+  "version": "1.0.0",
+  "description": "",
+  "main": "use.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node use.js",
+    "open": "open index.html"
+  },
+  "author": "Titouan Desvé Scirocco",
+  "license": "ISC"
+}
