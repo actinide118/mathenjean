@@ -1,7 +1,7 @@
 const {Suite} = require("./proto1");
 var AdmZip = require("adm-zip");
 let zip = new AdmZip();
-let len =20
+let len =25
 let refarr = [];
 function writechildren(obj, path,itt=0){
   if(obj.children !== undefined){
@@ -20,10 +20,10 @@ for (let i = 2;i <=len; i+=2){
     let line = refarr.filter((e) => e !== i);
 
     let s = new Suite(line,true,i);
-    /*
+    
     let obj = s.toObject();
-    writechildren(obj, `/`);;*/
-    console.log(s.toString());
+    writechildren(obj, `/`);
+    //console.log(s.toString());
     
 
 }
