@@ -1,7 +1,7 @@
 const {Suite} = require("./proto1");
 var AdmZip = require("adm-zip");
 let zip = new AdmZip();
-let len =10
+let len =30
 let refarr = [];
 function writechildren(obj, path,itt=0){
   if(obj.children !== undefined){
@@ -21,8 +21,8 @@ for (let i = 2;i <=10; i+=2){
 
     let s = new Suite(line,true,i);
     let obj = s.toObject();
-    console.log(obj)
     writechildren(obj, `/`);;
-    zip.writeZip(/*target file name*/ "./files.zip");
+    
 
 }
+zip.writeZip( `./table${len}.zip`);
