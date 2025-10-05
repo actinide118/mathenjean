@@ -9,5 +9,8 @@
     "open": "open index.html"
   },
   "author": "Titouan Desvé Scirocco",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "adm-zip": "^0.5.16"
+  }
 }

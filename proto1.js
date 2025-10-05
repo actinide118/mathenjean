@@ -54,6 +54,13 @@ class Suite {
         }
         return txt;
     }
+   toObject() {
+       if(this.finnish !== 0) {
+           return {finnish: this.finnish, min_max_value: this.min_max_value, isplayer1: this.isplayer1, number: this.number};
+       }else{
+           return {children: this.children.map((c) => c.toObject()), min_max_value: this.min_max_value, isplayer1: this.isplayer1, number: this.number};
+       }
+   } 
 }
 
 module.exports.Suite = Suite;
