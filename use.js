@@ -3,7 +3,7 @@ var AdmZip = require("adm-zip");
 const {writeFileSync,mkdirSync, mkdir} = require("node:fs")
 const path = require("node:path");
 let zip = new AdmZip();
-let len =30
+let len =8
 let refarr = [];
 function writechildren(obj, path,itt=0){
   if(obj.children !== undefined){

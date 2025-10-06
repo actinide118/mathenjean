@@ -1,0 +1,30 @@
+
+> math_enjeans@1.0.0 genererresume
+> node --max-old-space-size=20000  generertabledesresultat.js
+
+Pour 5 cartes la victoire revient au joueur 2
+Pour 6 cartes la victoire revient au joueur 2
+Pour 7 cartes la victoire revient au joueur 2
+Pour 8 cartes la victoire revient au joueur 1
+Pour 9 cartes la victoire revient au joueur 2
+Pour 10 cartes la victoire revient au joueur 2
+Pour 11 cartes la victoire revient au joueur 2
+Pour 12 cartes la victoire revient au joueur 1
+Pour 13 cartes la victoire revient au joueur 1
+Pour 14 cartes la victoire revient au joueur 1
+Pour 15 cartes la victoire revient au joueur 2
+Pour 16 cartes la victoire revient au joueur 1
+Pour 17 cartes la victoire revient au joueur 1
+Pour 18 cartes la victoire revient au joueur 2
+Pour 19 cartes la victoire revient au joueur 2
+Pour 20 cartes la victoire revient au joueur 1
+Pour 21 cartes la victoire revient au joueur 2
+Pour 22 cartes la victoire revient au joueur 2
+Pour 23 cartes la victoire revient au joueur 2
+Pour 24 cartes la victoire revient au joueur 1
+Pour 25 cartes la victoire revient au joueur 2
+Pour 26 cartes la victoire revient au joueur 2
+Pour 27 cartes la victoire revient au joueur 1
+Pour 28 cartes la victoire revient au joueur 2
+Pour 29 cartes la victoire revient au joueur 2
+Pour 30 cartes la victoire revient au joueur 1
