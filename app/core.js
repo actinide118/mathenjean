@@ -25,6 +25,7 @@ class CoreInterface {
       suite.push(obj);
     }
     this.all_suites.push(suite);
+    return this.all_suites.length-1
   }
   /**
    * 
@@ -51,6 +52,9 @@ class CoreInterface {
           }
         })
     })
+    if(suite == undefined){
+      return []
+    }
     return suite.map(
               (e)=>{
                 return {min_max_value: e.min_max_value, number: e.number, isplayer1: e.isplayer1}
