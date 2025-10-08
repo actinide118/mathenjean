@@ -1,7 +1,6 @@
-const {Suite} = require("../proto1");
+import {Suite} from "../proto1.mjs"
 
-
-class CoreInterface {
+export class CoreInterface {
   
   constructor(){
     this.all_suites = []
@@ -65,4 +64,3 @@ class CoreInterface {
   }
 }
 
-module.exports.CoreInterface = CoreInterface;

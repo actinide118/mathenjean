@@ -1,4 +1,4 @@
-class Suite {
+export class Suite {
     /**
      * 
      * @param {Array} available 
@@ -63,4 +63,3 @@ class Suite {
    } 
 }
 
-module.exports.Suite = Suite;

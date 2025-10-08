@@ -1,8 +1,8 @@
-const readline = require('node:readline');
-const { stdin: input, stdout: output } = require('node:process');
-const {CoreInterface} = require ("./core.js")
+import readline from 'node:readline';
+import { stdin, stdout } from 'node:process';
+import {CoreInterface} from"./core.mjs"
 
-const rl = readline.createInterface({ input, output });
+const rl = readline.createInterface({ input:stdin, output:stdout });
 console.log("Tap exit at every moment to quit\n number of cards: ")
 
 let core = new CoreInterface()

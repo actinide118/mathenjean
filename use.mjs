@@ -1,8 +1,8 @@
-const {Suite} = require("./proto1");
-var AdmZip = require("adm-zip");
-const {writeFileSync,mkdirSync, mkdir} = require("node:fs")
-const path = require("node:path");
-let zip = new AdmZip();
+import {Suite} from "./proto1.mjs"
+//var AdmZip = require("adm-zip");
+//const {writeFileSync,mkdirSync, mkdir} = require("node:fs")
+//const path = require("node:path");
+//let zip = new AdmZip();
 let len =8
 let refarr = [];
 function writechildren(obj, path,itt=0){
@@ -25,9 +25,9 @@ for (let i = 2;i <=len; i+=2){
 
     let s = new Suite(line,true,i);
     
-    let obj = s.toObject();
-    writechildren(obj, path.resolve(__dirname, `table${len}`));
-    //console.log(s.toString());
+    //let obj = s.toObject();
+    //writechildren(obj, path.resolve(__dirname, `table${len}`));
+    console.log(s.toString());
     
 
 }
