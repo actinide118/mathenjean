@@ -59,6 +59,17 @@ export class Suite {
        }else{
            return {children: this.children.map((c) => c.toObject()), min_max_value: this.min_max_value, isplayer1: this.isplayer1, number: this.number};
        }
-   } 
+   }
+   numberoflinesafter(){
+       if(this.finnish !== 0) {
+           return 1;
+       }else{
+           let total = 0;
+           this.children.forEach((c) => {
+               total += c.numberoflinesafter();
+           });
+           return total;
+       }
+   }
 }
 

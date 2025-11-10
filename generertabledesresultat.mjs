@@ -1,6 +1,7 @@
-const {Suite} = require("./proto1");
-let range =[5,30];
+import { Suite } from "./proto1.mjs";
+let range =[5,32];
 function whowin(nbcards){
+  let nbline = 0
   let refarr = [];
   for (let i = 1; i < nbcards+1; i++){
       refarr.push(i);
@@ -15,12 +16,13 @@ function whowin(nbcards){
     if(obj.min_max_value ==1){
       player1win = true;
     }
+    nbline += s.numberoflinesafter();
   }
-  return player1win;  
+  return [player1win, nbline]  
     
 
 }
 for(let i = range[0]; i <= range[1]; i++){
   let pw = whowin(i);
-  console.log(`Pour ${i} cartes la victoire revient au joueur ${pw ? "1":"2"}`);
+  console.log(`Pour ${i} cartes la victoire revient au joueur ${pw[0] ? "1":"2"} avec ${pw[1]} possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)`);
 }

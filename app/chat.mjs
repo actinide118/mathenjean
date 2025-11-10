@@ -35,6 +35,10 @@ function generic_callback(input){
   suite.forEach(element => {
     possibilite_de_suite.push(element.number)
   });
+  if (suite.length == 0){
+    console.log("1 est joué et l'adversaire gagne, entrez n'importe quel nombre")
+    return 
+  }
   console.log(suite.map(((e,index)=>{return `${index}-Le joueur${(e.isplayer1 ? "1":"2")} joue ${e.number} avec une victoire assurée pour le joueur${(e.min_max_value==1 ? "1":"2")}`})).join("\n"))
   console.log("select option with the number next to the propsition choose any other number to go back: ")
 }
