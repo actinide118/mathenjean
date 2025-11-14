@@ -1,0 +1,2 @@
+#define NUMBER_OF_CARDS 10
+#define COMPILE_MAX_CHILDREN 5
