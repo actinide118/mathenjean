@@ -33,6 +33,7 @@ uint8_t tab_putter;
 suite* current_suite;
 bool is_all_children_defined;
 bool min_max_curr_val;
+int count;
 
 suite* generate_suite(uint8_t number, suite* parent, bool isplayer1){
   suite* generated_suite = (suite*)malloc(sizeof(struct suite));
@@ -97,9 +98,9 @@ uint8_t playable_card(suite* processed_suite){
     }
     len=loop_counter;
     loop_counter=0;
-    printf("already played cards: ");
+    //printf("already played cards: ");
     while (loop_counter<len){
-      printf("%d; ",already_played_cards[loop_counter]);
+      //printf("%d; ",already_played_cards[loop_counter]);
       loop_counter++;
     }
     loop_counter=2;
@@ -131,7 +132,7 @@ int suite_manager(){
   init_cards();
 
 routine:
-  printf("routine entry: %d\n",current_suite->number);
+  //printf("routine entry: %d\n",current_suite->number);
   playable_cards_counter = playable_card(current_suite);
   if(playable_cards_counter==0){
     current_suite->is_min_max_def=true;
@@ -139,7 +140,7 @@ routine:
     current_suite->min_max_val= current_suite->isplayer1;
     current_suite->is_processed=true;
     current_suite=current_suite->parent;
-    printf("game ended\n");
+    //printf("game ended\n");
     goto defminmax;
   }
   loop_counter=0;
@@ -147,10 +148,10 @@ routine:
   if (arr == NULL) {
     goto memory_allocation_fail;
   } 
-  printf("current card:%d\n", current_suite->number);
+  //printf("current card:%d\n", current_suite->number);
   while (loop_counter < playable_cards_counter) {
     arr[loop_counter] = generate_suite(playable_cards[loop_counter], current_suite,!current_suite->isplayer1);
-    printf("card: %d\n",playable_cards[loop_counter]);
+    //printf("card: %d\n",playable_cards[loop_counter]);
     if (arr[loop_counter] == NULL) {
       goto memory_allocation_fail;
     }
@@ -163,13 +164,12 @@ routine:
   goto crawl;
 
 crawl:
-  printf("crawl entry: %d<-",current_suite->number);
+  //printf("crawl entry: %d<-",current_suite->number);
   if(current_suite->number==0){
-    printf("\n");
+    //printf("\n");
   }else{
-    printf("%d\n",current_suite->parent->number);
+    //printf("%d\n",current_suite->parent->number);
   }
-
   loop_counter=0;
    while(loop_counter<current_suite->number_of_children){
     if(!current_suite->children_array_pointer[loop_counter]->is_processed){
@@ -180,11 +180,11 @@ crawl:
   }
 
 defminmax:
-  printf("defminmax entry: %d<-",current_suite->number);
+  //printf("defminmax entry: %d<-",current_suite->number);
   if(current_suite->number==0){
-    printf("\n");
+    //printf("\n");
   }else{
-    printf("%d\n",current_suite->parent->number);
+    //printf("%d\n",current_suite->parent->number);
   }
   loop_counter=0;
   is_all_children_defined=true;
@@ -223,10 +223,10 @@ memory_allocation_fail:
   return 1;
 
 everythings_fine:
-  printf("Number of children: %d\n", current_suite->number_of_children);
+  /*printf("Number of children: %d\n", current_suite->number_of_children);
   for (int i = 0; i < current_suite->number_of_children; i++) {
     printf("Child %d number: %d\n", i, current_suite->children_array_pointer[i]->number);
-  }
+  }*/
   return 0;
 }
 
@@ -247,14 +247,27 @@ void print_suite(suite* cur,uint8_t level){
   }
 }
 
+int count_stat(suite* cur){
+  if(cur->number_of_children==0){
+    count++;
+    return 0;
+  }
+  for (int i = 0; i < cur->number_of_children; i++) {
+    count_stat(cur->children_array_pointer[i]);
+  }
+  return 0;
+}
 
 void exploit_result(suite* holder){
-  print_suite(holder,0);
+  //print_suite(holder,0);
+  count=0;
+  count_stat(holder);
+  printf("%d\n",count);
 }
 
 int main(){
   if(suite_manager()==0){
-    printf("%d\n",current_suite->number);
+    printf("%d\n",current_suite->min_max_val);
     exploit_result(current_suite);
     return 0;
   }else{
