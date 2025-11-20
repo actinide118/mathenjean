@@ -136,7 +136,7 @@ routine:
   if(playable_cards_counter==0){
     current_suite->is_min_max_def=true;
     current_suite->game_ended = true;
-    current_suite->min_max_val= !current_suite->isplayer1;
+    current_suite->min_max_val= current_suite->isplayer1;
     current_suite->is_processed=true;
     current_suite=current_suite->parent;
     printf("game ended\n");
@@ -193,10 +193,19 @@ defminmax:
     if(!current_suite->children_array_pointer[loop_counter]->is_min_max_def){
       goto crawl;
     }
-    if(current_suite->isplayer1 && !current_suite->children_array_pointer[loop_counter]->min_max_val){
-      min_max_curr_val=false;
-    }else if(current_suite->children_array_pointer[loop_counter]->min_max_val){
+    /*if(current_suite->isplayer1 && !current_suite->children_array_pointer[loop_counter]->min_max_val){
       min_max_curr_val=true;
+    }else if(current_suite->children_array_pointer[loop_counter]->min_max_val){
+      min_max_curr_val=false;
+    }*/
+   if(current_suite->isplayer1){
+      if(!current_suite->children_array_pointer[loop_counter]->min_max_val){
+        min_max_curr_val=false;//si, en étant le joueur 1 le joueur 2 a un coup pour gagner alors le nombre joué par le joueur 1 est perdant
+      }
+    }else{
+      if(current_suite->children_array_pointer[loop_counter]->min_max_val){
+        min_max_curr_val=true;//Pareil mais pour le joueur 2
+      }
     }
     loop_counter++;
   }
@@ -221,6 +230,34 @@ everythings_fine:
   return 0;
 }
 
+void print_suite(suite* cur,uint8_t level){
+  for(uint8_t i = 0; i<level; i++){
+      printf("\t");
+  }
+  printf("[%d]=>%d(%s)->\n",level,cur->number,cur->min_max_val ? "1": "2");
+  if(cur->number_of_children==0){
+    for(uint8_t i = 0; i<level; i++){
+      printf("\t");
+    }
+    printf("finnish victory => %s\n",cur->isplayer1 ? "1": "2");
+    return;
+  }
+  for (int i = 0; i < cur->number_of_children; i++) {
+    print_suite(cur->children_array_pointer[i],level+1);
+  }
+}
+
+
+void exploit_result(suite* holder){
+  print_suite(holder,0);
+}
+
 int main(){
-  return suite_manager();
+  if(suite_manager()==0){
+    printf("%d\n",current_suite->number);
+    exploit_result(current_suite);
+    return 0;
+  }else{
+    return 1;
+  }
 }
