@@ -19,9 +19,15 @@ suite global_temporary_array[COMPILE_MAX_CHILDREN];
 uint8_t base_cards[NUMBER_OF_CARDS];
 uint8_t current_cards[NUMBER_OF_CARDS];
 uint8_t playable_cards[COMPILE_MAX_CHILDREN];
+uint8_t already_played_cards[NUMBER_OF_CARDS];
 uint8_t currentcard_generator=1;
 uint8_t loop_counter= 1;
+uint8_t loop = 1;
 uint8_t playable_cards_counter=0;
+suite* temporary_suite_pointer;
+uint8_t len;
+uint8_t len2;
+uint8_t tab_putter;
 
 suite* generate_suite(uint8_t number, suite* parent){
   suite* generated_suite = (suite*)malloc(sizeof(struct suite));
@@ -34,6 +40,17 @@ suite* generate_suite(uint8_t number, suite* parent){
   generated_suite->is_processed=false;
   generated_suite->parent=parent;
   return generated_suite;
+}
+
+bool array_include(uint8_t value, uint8_t search_pool[],uint8_t len ){
+  loop_counter=0;
+  while(loop_counter<(len)){
+    if(search_pool[loop_counter]==value){
+      return true;
+    }
+    loop_counter++;
+  }
+  return false;
 }
 
 void init_cards(){
@@ -54,7 +71,41 @@ uint8_t playable_card(suite* processed_suite){
       loop_counter ++;
     }
     return loop_counter;
-  }else{}
+  }else{
+    loop_counter= 0;
+    while(loop_counter < NUMBER_OF_CARDS){
+      already_played_cards[loop_counter]=0;
+      loop_counter ++;
+    }
+    loop_counter=0;
+    temporary_suite_pointer=processed_suite;
+    while(loop_counter<NUMBER_OF_CARDS){
+      if(!temporary_suite_pointer->number==0){
+        already_played_cards[loop_counter]=temporary_suite_pointer->number;
+        temporary_suite_pointer->parent;
+        loop_counter++;
+      }else{
+        break;
+      }
+    }
+    len=loop_counter;
+    loop_counter=2;
+    len2 = 0;
+    tab_putter=0;
+    while(loop_counter<=NUMBER_OF_CARDS){
+      if(processed_suite->number % loop_counter == 0||loop_counter % processed_suite->number==0){
+        loop = loop_counter;
+        if(!array_include(loop_counter,already_played_cards,len)){
+          playable_cards[tab_putter]=loop;
+          len2++;
+          tab_putter++;
+        }
+        loop_counter = loop;
+      }
+      loop_counter++;
+    }
+    return len2;
+  }
 }
 
 int suite_manager(){
@@ -62,16 +113,15 @@ int suite_manager(){
   if(null_holder == NULL){
     goto memory_allocation_fail;
   }
-  playable_cards_counter= playable_card(null_holder);
-  printf("%d",playable_cards[0]);
-  printf("%d",playable_cards[1]);
-  printf("%d",playable_cards[2]);
-  printf("%d",playable_cards[3]);
-  printf("%d",playable_cards[4]);
+  suite* sut = generate_suite((uint8_t)4,null_holder);
+  playable_cards_counter= playable_card(sut);
+  printf("number of cards:%d\n",playable_cards_counter);
+  printf("%d\n",playable_cards[0]);
+  printf("%d\n",playable_cards[1]);
+  printf("%d\n",playable_cards[2]);
+  printf("%d\n",playable_cards[3]);
   init_cards();
   goto everythings_fine;
-  
-start:
 
 routine:
 
