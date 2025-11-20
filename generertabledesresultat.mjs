@@ -1,5 +1,5 @@
 import { Suite } from "./proto1.mjs";
-let range =[5,32];
+let range =[5,35];
 function whowin(nbcards){
   let nbline = 0
   let refarr = [];

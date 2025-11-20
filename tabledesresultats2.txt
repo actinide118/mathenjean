@@ -26,3 +26,5 @@ Pour 29 cartes la victoire revient au joueur 2 avec 511719 possibilités de part
 Pour 30 cartes la victoire revient au joueur 1 avec 3529369 possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)
 Pour 31 cartes la victoire revient au joueur 1 avec 3529369 possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)
 Pour 32 cartes la victoire revient au joueur 2 avec 9255203 possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)
+Pour 33 cartes la victoire revient au joueur 1 avec 10370409 possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)
+Pour 34 cartes la victoire revient au joueur 1 avec 10794204 possibilités de parties (en considérant que 1 n'est joué qu'en dernier recours)
