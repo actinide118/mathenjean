@@ -181,12 +181,6 @@ crawl:
   }
 
 defminmax:
-  //printf("defminmax entry: %d<-",current_suite->number);
-  if(current_suite->number==0){
-    //printf("\n");
-  }else{
-    //printf("%d\n",current_suite->parent->number);
-  }
   loop_counter=0;
   is_all_children_defined=true;
   min_max_curr_val=current_suite->isplayer1;
@@ -194,11 +188,6 @@ defminmax:
     if(!current_suite->children_array_pointer[loop_counter]->is_min_max_def){
       goto crawl;
     }
-    /*if(current_suite->isplayer1 && !current_suite->children_array_pointer[loop_counter]->min_max_val){
-      min_max_curr_val=true;
-    }else if(current_suite->children_array_pointer[loop_counter]->min_max_val){
-      min_max_curr_val=false;
-    }*/
    if(current_suite->isplayer1){
       if(!current_suite->children_array_pointer[loop_counter]->min_max_val){
         min_max_curr_val=false;//si, en étant le joueur 1 le joueur 2 a un coup pour gagner alors le nombre joué par le joueur 1 est perdant
@@ -214,6 +203,11 @@ defminmax:
   current_suite->min_max_val=min_max_curr_val;
    if(current_suite->number==0){
     goto everythings_fine;
+  }
+  loop_counter=0;
+  while(loop_counter<current_suite->number_of_children){
+    free(current_suite->children_array_pointer[loop_counter]);
+    loop_counter++;
   }
   current_suite=current_suite->parent;
 
