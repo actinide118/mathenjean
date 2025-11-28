@@ -207,8 +207,10 @@ defminmax:
   loop_counter=0;
   while(loop_counter<current_suite->number_of_children){
     free(current_suite->children_array_pointer[loop_counter]);
+
     loop_counter++;
   }
+  free(current_suite->children_array_pointer);
   current_suite=current_suite->parent;
 
   goto defminmax;
