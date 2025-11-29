@@ -122,7 +122,7 @@ uint8_t playable_card(suite* processed_suite){
   }
 }
 
-int suite_manager(){
+int suite_manager(int argc, char *argv[]){
   suite* null_holder = generate_suite((uint8_t)0,0,false);
   if(null_holder == NULL){
     printf("here");
@@ -130,6 +130,23 @@ int suite_manager(){
   }
   current_suite = null_holder;
   init_cards();
+  bool pl = true;
+  if(argc!=1){
+    for(int i=1;i<argc;i++){
+      current_suite->number_of_children = 0;
+      suite** arr = (suite**)malloc(1 * sizeof(suite*));
+      if (arr == NULL) {
+        goto memory_allocation_fail;
+      }
+      arr[0]=generate_suite((uint8_t)atoi(argv[i]),current_suite,pl);
+      current_suite->children_array_pointer = arr;
+      current_suite->number_of_children = 1;
+      current_suite->is_processed=true;
+      pl=!pl;
+      current_suite=arr[0];
+    }
+    
+  }
 
 routine:
   //printf("routine entry: %d\n",current_suite->number);
@@ -149,10 +166,8 @@ routine:
   if (arr == NULL) {
     goto memory_allocation_fail;
   } 
-  //printf("current card:%d\n", current_suite->number);
   while (loop_counter < playable_cards_counter) {
     arr[loop_counter] = generate_suite(playable_cards[loop_counter], current_suite,!current_suite->isplayer1);
-    //printf("card: %d\n",playable_cards[loop_counter]);
     if (arr[loop_counter] == NULL) {
       goto memory_allocation_fail;
     }
@@ -165,12 +180,6 @@ routine:
   goto crawl;
 
 crawl:
-  //printf("crawl entry: %d<-",current_suite->number);
-  if(current_suite->number==0){
-    //printf("\n");
-  }else{
-    //printf("%d\n",current_suite->parent->number);
-  }
   loop_counter=0;
    while(loop_counter<current_suite->number_of_children){
     if(!current_suite->children_array_pointer[loop_counter]->is_processed){
@@ -262,8 +271,8 @@ void exploit_result(suite* holder){
   printf("%d\n",count);
 }
 
-int main(){
-  if(suite_manager()==0){
+int main(int argc, char *argv[]){
+  if(suite_manager(argc,argv)==0){
     printf("%d\n",current_suite->min_max_val);
     exploit_result(current_suite);
     return 0;
