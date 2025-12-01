@@ -19,9 +19,9 @@ while(index < tab.length){
 
 console.log(tab)
 
-for(let i=100;i<=max;i++){
+for(let i=10;i<=max;i++){
   let nb_premiers_fonctionnant=tab.filter((e)=>{
-    return (3*e<i &&
+    return (3*e<=i &&
     4*e>i &&
     e<i/2
   )
