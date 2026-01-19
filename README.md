@@ -3,7 +3,10 @@ Le programme considère la partie comme perdu une fois qu'un joueur est forcé �
 ## résultat
 un tableau présentant les résultats sous la forme: nombres de cartes; nombre de nombres premiers>n/2; quel joueur gagne; nombre de parties possibles est stocké dans le fichier result.ods
 ## utilisation
-ATTENTION: les programmes sont conçus sur et pour linux devrait fonctionner sur macOS sur Windows en revanche les programmes JavaScript devrait fonctionner mais les programmes c demanderait une adaptation préalable
+ATTENTION: les programmes sont conçus sur et pour linux et devrait fonctionner sur macOS, sur Windows en revanche les programmes JavaScript devrait fonctionner mais les programmes c demanderait une adaptation préalable
+### dependances
+*javascript: `node`
+* c: `gcc`
 ### javascript
 la logique est stockée dans le fichier proto1.mjs
 #### utilisation simplifié
@@ -12,6 +15,7 @@ Pour générer une arborescence de fichiers et dossiers qui contient "the" méth
 
 #### interactivité
 le fichier chat.mjs permet d'avoir un shell interactif.
+`node app/chat.mjs`
 ### C
 
 #### proto2.c
