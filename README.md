@@ -17,6 +17,6 @@ le fichier chat.mjs permet d'avoir un shell interactif.
 ##### paramétrage
 Dans compile_option.h changer NUMBER_OF_CARDS et COMPILE_MAX_CHILDREN a ceil(NUMBER_OF_CARDS/2)
 ##### compilation
-gcc proto2.c -o a.out
+`gcc proto2.c -o a.out`
 ##### executer
-./a.out
+`./a.out`
