@@ -20,3 +20,4 @@ Dans compile_option.h changer NUMBER_OF_CARDS et COMPILE_MAX_CHILDREN a ceil(NUM
 `gcc proto2.c -o a.out`
 ##### executer
 `./a.out`
+#### multithreading
