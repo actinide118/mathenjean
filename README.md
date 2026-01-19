@@ -5,7 +5,7 @@ un tableau présentant les résultats sous la forme: nombres de cartes; nombre d
 ## utilisation
 ATTENTION: les programmes sont conçus sur et pour linux et devrait fonctionner sur macOS, sur Windows en revanche les programmes JavaScript devrait fonctionner mais les programmes c demanderait une adaptation préalable
 ### dependances
-*javascript: `node`
+* javascript: `node`
 * c: `gcc`
 ### javascript
 la logique est stockée dans le fichier proto1.mjs
