@@ -1,5 +1,5 @@
 "use strict"
-let max = 10000;
+let max = 50;
 let tab = [];
 let index = 0
 
@@ -26,6 +26,7 @@ for(let i=10;i<=max;i++){
     e<i/2
   )
   })
+  console.log(nb_premiers_fonctionnant)
   if(nb_premiers_fonctionnant.length>=3){
     console.log(`Pour ${i} cartes les nombres premiers: ${nb_premiers_fonctionnant.join(",")} permettent au joueur 1 de gagner`)
   }else{
