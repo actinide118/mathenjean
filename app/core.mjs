@@ -1,4 +1,4 @@
-import {Suite} from "../proto1.mjs"
+import {Suite} from "../cartes/programmes/cartes/javascript/proto1.mjs"
 
 export class CoreInterface {
   

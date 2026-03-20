@@ -1,17 +1,31 @@
 {
   "name": "math_enjeans",
   "version": "1.0.0",
-  "description": "",
+  "description": "Le programme considère la partie comme perdu une fois qu'un joueur est forcé à jouer 1 ## résultat un tableau présentant les résultats sous la forme: nombres de cartes; nombre de nombres premiers>n/2; quel joueur gagne; nombre de parties possibles est stocké dans le fichier result.ods ## utilisation ATTENTION: les programmes sont conçus sur et pour linux et devrait fonctionner sur macOS, sur Windows en revanche les programmes JavaScript devrait fonctionner mais les programmes c demanderait une adaptation préalable ### dependances * javascript: `node` * c: `gcc` ### javascript la logique est stockée dans le fichier proto1.mjs #### utilisation simplifié Pour générer une arborescence de fichiers et dossiers qui contient \"the\" méthode parfaite changer la variable len dans use.mjs et éxécuter ce même fichier: `node use.mjs`",
   "main": "use.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node use.mjs",
-    "genererresume":"node --max-old-space-size=20000  generertabledesresultat.js",
-    "open": "open index.html"
+    "start": "node --max-old-space-size=20000 cartes/programmes/cartes/javascript/use.mjs",
+    "genererresume": "node --max-old-space-size=20000  cartes/programmes/cartes/javascript/generertabledesresultat.mjs",
+    "c":"cartes/programmes/cartes/c/run.sh",
+    "facteur":"node facteur/pourlefacteur.js",
+    "nb_premier":"node cartes/programmes/cartes/javascript/nb_premier.js",
+    "chat":"node --max-old-space-size=20000 app/chat.mjs",
+    "graph":"node  cartes/programmes/graphes/graph.js"
   },
   "author": "Titouan Desvé Scirocco",
-  "license": "ISC",
-  "dependencies": {
-    "adm-zip": "^0.5.16"
-  }
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/actinide118/mathenjean.git"
+  },
+  "keywords": [
+    "math",
+    "cards",
+    "cartes"
+  ],
+  "bugs": {
+    "url": "https://github.com/actinide118/mathenjean/issues"
+  },
+  "homepage": "https://github.com/actinide118/mathenjean#readme"
 }
