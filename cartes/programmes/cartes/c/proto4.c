@@ -20,7 +20,7 @@ int main(){
       //printf("Child process for number %d\n", i);
       char str[10]; // Increased size to handle larger numbers
       sprintf(str, "%d", i);
-      char *args[] = {"./a.out", str, NULL};
+      char *args[] = {"./cartes/programmes/cartes/c/a.out", str, NULL};
       execvp(args[0], args);
 
       // If execvp fails
