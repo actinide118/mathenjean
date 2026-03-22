@@ -14,7 +14,7 @@ ATTENTION: les programmes sont conçus sur et pour linux et devrait fonctionner 
 ATTENTION: dû à leur structure il n'est pas impossible que sur des valeurs inférieur à 5 les programmes ne fonctionnent pas correctement.
 ### dependances
 * javascript: `node`, `npm` (optionnel)
-* c: `gcc`, `npm` (optionnel)
+* c: `gcc`, `npm`,`node` (optionnel)
 Si vous n'avez pas `npm` veulliez copier la commande que vous souhaitez exécuter depuis le fichier package.json.
 ### javascript
 #### nb_premier.js
@@ -46,3 +46,7 @@ Utilisez la commande `npm run chat`
 Voir les commentaires du fichier
 ##### Exécution
 Utilisez la commande `npm run graph`
+### c 
+#### proto4.c
+##### Paramétrage
+Dans compile_options.h modifier NUMBER_OF_CARDS au nombre de cartes et COMPILE_MAX_CHILDREN à l'entier supérieur de la division par 2 du nombre de cartes
