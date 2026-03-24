@@ -3,10 +3,10 @@ Le programme implémentant le schéma de résolution du problème du facteur est
 Vous pouvez lancer: `npm run facteur` ou `node facteur/pourlefacteur.js`. Son paramétrage est intuitif.
 
 # mathenjean
-Le programme considère la partie comme perdu une fois qu'un joueur est forcé à jouer 1.
+Le programme considère la partie comme perdu une fois qu'un joueur est forcé de jouer 1.
 ## résultat
 Les resultats sont stockés dans le dossier cartes/resultats.
-un tableau présentant les résultats sous la forme: nombres de cartes; nombre de nombres premiers>n/2; quel joueur gagne; nombre de parties possibles est stocké dans le fichier result.ods.
+Un tableau présentant les résultats sous la forme: nombres de cartes; nombre de nombres premiers>n/2; quel joueur gagne; nombre de parties possibles est stocké dans le fichier result.ods.
 Les "tables de vérité" pour toute les parties que nous avons générerées ne devrait pas être utilisées pour jouer une partie; utilisez plutôt le "package" app.
 Le fichier nbprem.txt donne tous les nombres pour lesquels la stratégies des nombres semi-premiers marchent.
 ## utilisation
@@ -50,3 +50,5 @@ Utilisez la commande `npm run graph`
 #### proto4.c
 ##### Paramétrage
 Dans compile_options.h modifier NUMBER_OF_CARDS au nombre de cartes et COMPILE_MAX_CHILDREN à l'entier supérieur de la division par 2 du nombre de cartes
+##### Exécution 
+Utilisez la commande `npm run c` 
