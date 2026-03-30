@@ -1,60 +1,108 @@
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+let popupcontainer = document.getElementById("popup");
+let zoneresult=document.getElementById("result");
+let declencheur = document.getElementById("trigger")
+let num_imput= document.getElementById("numinput");
 
-function draw_sommet(posx,posy,name){
-  ctx.fillStyle = "rgb(126, 161, 212)";
-  ctx.fillRect(posx, posy, 20, 20);
-  ctx.font = "15px serif";
-  ctx.fillStyle = "rgb(0, 0, 0)";
-  ctx.fillText(name, posx+2, posy+14);
-}
+let selected=[]
 
-function draw_edge(posx1,posy1,posx2,posy2){
-  ctx.beginPath()
-  ctx.moveTo(posx1+10,posy1+10)
-  ctx.lineTo(posx2+10,posy2+10)
-  ctx.strokeStyle = "rgb(126, 161, 212)";
-  ctx.lineWidth = 2;
-  ctx.stroke()
-}
-
-class Layout_place{
-  constructor(){
-    this.isUsed=false;
-    this.Sommet=undefined;
-  }
-}
-
-class Layout{
-  constructor(){
-    this.array=[[new Layout_place(),new Layout_place()],[new Layout_place(),new Layout_place()]]
-    this.colnb=2
-    this.linenb=2
-  }
-  add_line(nb){
-    for(let i=0;i<nb;i++){
-      let arr=[]
-      for(let j=0;j<this.colnb;j++){
-        arr.push(new Layout_place())
-      }
-      this.array.push(arr)
+class Popup{
+  /**
+   * 
+   * @param {String|HTMLElement} elem 
+   */
+  constructor(elem){
+    if(typeof elem =="string"){
+      this.element=document.createElement("div");
+      this.element.innerText=elem;
+      this.element.className="genericpopup";
+    }else{
+      this.element=elem;
     }
-    this.linenb+=nb
+    popupcontainer.style.display="flex";
+    popupcontainer.innerHTML="";
+    Popup.add_close_button(this)
+    popupcontainer.appendChild(this.element)
   }
-  add_col(nb){
-    for(let i=0;i<nb;i++){
-      this.array.forEach(e=>e.push(new Layout_place()))
-    }
-    this.colnb+=nb
+  delete(){
+    this.element=undefined;
+    delete this
+  }
+  /**
+   * 
+   * @param {Popup} popup 
+   */
+  static add_close_button(popup){
+    let close = document.createElement("button");
+    close.onclick = () => {
+      popupcontainer.innerHTML = "";
+      popup.delete()
+      popupcontainer.style.display = "none";
+      let button_arr = document.getElementsByName("button");
+      button_arr.forEach((el) => {
+        el.style.display = "block";
+      });
+    };
+    close.innerHTML = "Fermer";
+    popupcontainer.appendChild(close);
   }
 }
 
-draw_sommet(3,4,5)
+function add_graph(nb){
+  let graphic=new Carte_graph(nb);
+  graphic.clean();
+  let main_container=document.createElement("div");
+  main_container.className="graphcontainer";
 
-draw_sommet(25,90,1)
+  let title = document.createElement("a");
+  title.innerText=`Graphe: ${nb}`
+  title.addEventListener("click",(evt)=>{
+    navigator.clipboard.writeText(graphic.to_String());
+    new Popup("copié dans le presse papier");
+  })
 
-draw_edge(3,4,25,90)
+  let simplify_button = document.createElement("button");
+  simplify_button.innerHTML="simplifier";
+  simplify_button.addEventListener("click",(evt)=>{
+    graphic.simplify()
+    graphic.clean();
+    simplify_button.innerHTML="simplifié"
+    simplify_button.disabled=true;
+  })
 
-let layout=new Layout()
-layout.add_line(2)
-layout.add_col(2)
+  let is_selected=false;
+
+  let select_buttton=document.createElement("button");
+  select_buttton.innerHTML="séléctioner";
+  select_buttton.addEventListener("click",(evt)=>{
+    if(!is_selected){
+      selected.push(graphic);
+      select_buttton.innerHTML="déséléctioner";
+      is_selected=true;
+    }else{
+      selected.forEach((el,index)=>{
+        if(el==graphic){
+          selected.splice(index,1);
+        }
+      })
+      select_buttton.innerHTML="séléctioner";
+      is_selected=false;
+    }
+  })
+
+  let statistiques_button = document.createElement("button");
+  statistiques_button.innerHTML="statistiques";
+  statistiques_button.addEventListener("click",(evt)=>{
+    new Popup(`Nombres de liens: ${graphic.links.length}\nNombres de points: ${graphic.points.length}`)
+  })
+
+  main_container.appendChild(select_buttton);
+  main_container.appendChild(title);
+  main_container.appendChild(simplify_button);
+  main_container.appendChild(statistiques_button);
+  zoneresult.appendChild(main_container);
+}
+
+declencheur.addEventListener("click",(evt)=>{
+  let input = num_imput.value;
+  add_graph(Number(input))
+})
