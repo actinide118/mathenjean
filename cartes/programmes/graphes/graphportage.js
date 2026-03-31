@@ -2,6 +2,8 @@ let popupcontainer = document.getElementById("popup");
 let zoneresult=document.getElementById("result");
 let declencheur = document.getElementById("trigger")
 let num_imput= document.getElementById("numinput");
+let similitudes_button = document.getElementById("similitudes");
+let diffs_button = document.getElementById("diffs");
 
 let selected=[]
 
@@ -94,15 +96,38 @@ function add_graph(nb){
   statistiques_button.addEventListener("click",(evt)=>{
     new Popup(`Nombres de liens: ${graphic.links.length}\nNombres de points: ${graphic.points.length}`)
   })
+  let remove_button=document.createElement("button");
+  remove_button.innerHTML="supprimer";
+  remove_button.addEventListener("click",(evt)=>{
+    zoneresult.removeChild(main_container);
+  })
 
   main_container.appendChild(select_buttton);
   main_container.appendChild(title);
   main_container.appendChild(simplify_button);
   main_container.appendChild(statistiques_button);
+  main_container.appendChild(remove_button);
   zoneresult.appendChild(main_container);
 }
 
 declencheur.addEventListener("click",(evt)=>{
   let input = num_imput.value;
   add_graph(Number(input))
+})
+
+similitudes_button.addEventListener("click",(evt)=>{
+  if(selected.length != 2){
+    new Popup("ERREUR: 2 graphes doivent être spécifié");
+    return;
+  }
+  new Popup(`Pourcentage de similitude: ${Graph.Get_pourcentage_dif(selected[0],selected[1])}`)
+})
+
+diffs_button.addEventListener("click",(evt)=>{
+  if(selected.length != 2){
+    new Popup("ERREUR: 2 graphes doivent être spécifié");
+    return;
+  }
+  let difs=Graph.Get_dif_between(selected[0],selected[1])
+  new Popup(`Différences entre:  ${selected[0].nb}(${selected[0].simplified ? "simplifié":"non simplifié"}) et ${selected[1].nb}(${selected[1].simplified ? "simplifié":"non simplifié"})\n${Graph.Print_graph_dif(difs)}`)
 })

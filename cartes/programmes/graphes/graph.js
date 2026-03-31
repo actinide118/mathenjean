@@ -271,6 +271,8 @@ class Carte_graph extends Graph{
    */
   constructor(nb){
     super()
+    this.nb=nb;
+    this.simplified=false;
     for (let i = 2;i<=nb;i++){
       this.add_point(i);
     }
@@ -313,6 +315,7 @@ class Carte_graph extends Graph{
       })
       this.clean()
     }while(haschanged)
+    this.simplified=true
   }
   
 }
